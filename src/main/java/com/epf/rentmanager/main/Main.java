@@ -2,8 +2,10 @@ package com.epf.rentmanager.main;
 
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import java.time.LocalDate;
 
@@ -22,8 +24,6 @@ public class Main {
 
         try {
 
-            /*
-
             // ------- CLIENTS ------------
 
             // clients.stream().forEach((client) -> System.out.println(client));
@@ -40,7 +40,6 @@ public class Main {
 
             // ----------- VEHICULES ------------
 
-
             System.out.println("Tous les véhicules :");
             for(Vehicle v : VehicleService.getInstance().findAll()) {
                 System.out.println(v);
@@ -53,7 +52,7 @@ public class Main {
 
             // ------------ AJOUT -----------
 
-
+            /*
 
             if(addClient) {
                 System.out.println("Ajout d'un client");
@@ -83,10 +82,14 @@ public class Main {
 
             // -------Count ---------
 
+            /*
             System.out.println("Nombre de clients = " + ClientService.getInstance().count());
 
             System.out.println("Nombre de véhicules = " + VehicleService.getInstance().count());
 
+            ReservationService.getInstance().create(new Reservation(1, 1,
+                    LocalDate.of(2023, 1, 27), LocalDate.of(2023, 2, 12)));
+            */
 
 
 
