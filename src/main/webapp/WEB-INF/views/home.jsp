@@ -35,7 +35,7 @@
               <span class="info-box-number">
                 <%/*= com.epf.rentmanager.service.ClientService*/
                  %>
-                 3
+                 ${nbUser}
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -50,7 +50,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Voitures</span>
               <span class="info-box-number">
-                5
+                ${nbVehicle}
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -69,7 +69,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Reservations</span>
               <span class="info-box-number">
-                2
+                ${nbReservation}
               </span>
             </div>
             <!-- /.info-box-content -->
