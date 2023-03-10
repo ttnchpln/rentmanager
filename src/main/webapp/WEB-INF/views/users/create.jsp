@@ -25,7 +25,7 @@
                     <!-- Horizontal Form -->
                     <div class="box">
                         <!-- form start -->
-                        <form class="form-horizontal" method="post">
+                        <form class="form-horizontal" method="post" action="/rentmanager/users/create">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="last_name" class="col-sm-2 control-label">Nom</label>
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="birthday" class="col-sm-2 control-label">Email</label>
+                                    <label for="birthday" class="col-sm-2 control-label">Date de naissance :</label>
 
                                     <div class="col-sm-10">
                                         <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Email">

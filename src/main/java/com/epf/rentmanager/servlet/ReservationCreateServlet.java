@@ -44,10 +44,16 @@ public class ReservationCreateServlet extends HttpServlet {
 
         String idCar = request.getParameter("car");
         String idClient = request.getParameter("client");
-        LocalDate debut = LocalDate.parse(request.getParameter("begin"));
-        LocalDate fin = LocalDate.parse(request.getParameter("end"));
+        String[] debut = request.getParameter("begin").split("/");
+        String[] fin = request.getParameter("end").split("/");
 
-        Reservation reseToAdd = new Reservation(Long.getLong(idCar), Long.getLong(idClient), debut, fin);
+        // Parametre formulaire = jour/mois/année
+        // LocalDate = année-mois-jour
+
+        LocalDate debutDate = LocalDate.parse(debut[2]+"-"+debut[1]+"-"+debut[0]);
+        LocalDate finDate = LocalDate.parse(fin[2]+"-"+fin[1]+"-"+fin[0]);
+
+        Reservation reseToAdd = new Reservation(Long.parseLong(idCar), Long.parseLong(idClient), debutDate, finDate);
 
         try {
             this.reservationService.create(reseToAdd);

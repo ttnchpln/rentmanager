@@ -1,4 +1,5 @@
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
+C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserDetailServlet.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleListServlet.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
@@ -10,6 +11,7 @@ C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\jav
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\main\Main.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserCreateServlet.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
+C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationCreateServlet.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
 C:\Users\titou\Documents\EPF\4A\Projet Rent\rentmanager\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java

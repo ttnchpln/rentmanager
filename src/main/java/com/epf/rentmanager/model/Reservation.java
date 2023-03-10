@@ -10,6 +10,8 @@ public class Reservation {
     private long vehicle_id;
     private LocalDate debut;
     private LocalDate fin;
+    private Client client;
+    private Vehicle vehicle;
 
     public Reservation() {
         super();
@@ -19,6 +21,13 @@ public class Reservation {
         this.id = id;
         this.client_id = client_id;
         this.vehicle_id = vehicle_id;
+        this.debut = debut;
+        this.fin = fin;
+    }
+    public Reservation(Client client, Vehicle vehicle, LocalDate debut, LocalDate fin) {
+        this.id = id;
+        this.client = client;
+        this.vehicle = vehicle;
         this.debut = debut;
         this.fin = fin;
     }
