@@ -24,7 +24,7 @@ public class ReservationListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            request.setAttribute("rents", this.reservationService.findAll());
+            request.setAttribute("rents", this.reservationService.findAll(false));
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }

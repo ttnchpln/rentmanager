@@ -10,7 +10,11 @@ public class Reservation {
     private long vehicle_id;
     private LocalDate debut;
     private LocalDate fin;
-    private Client client;
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
     private Vehicle vehicle;
 
     public Reservation() {
@@ -18,13 +22,12 @@ public class Reservation {
     }
 
     public Reservation(long client_id, long vehicle_id, LocalDate debut, LocalDate fin) {
-        this.id = id;
         this.client_id = client_id;
         this.vehicle_id = vehicle_id;
         this.debut = debut;
         this.fin = fin;
     }
-    public Reservation(Client client, Vehicle vehicle, LocalDate debut, LocalDate fin) {
+    public Reservation(long id, Client client, Vehicle vehicle, LocalDate debut, LocalDate fin) {
         this.id = id;
         this.client = client;
         this.vehicle = vehicle;
@@ -76,6 +79,19 @@ public class Reservation {
 
     public void setFin(LocalDate fin) {
         this.fin = fin;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    private Client client;
+
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
     @Override

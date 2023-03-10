@@ -11,8 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
+import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.VehicleService;
 
 public class ReservationDao {
 
@@ -123,7 +128,7 @@ public class ReservationDao {
 		return null;
 	}
 
-	public List<Reservation> findAll() throws DaoException {
+	public List<Reservation> findAll(boolean getId) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 
@@ -133,17 +138,32 @@ public class ReservationDao {
 
 			List<Reservation> reservations = new ArrayList<>();
 
-			while (rs.next()) {
+			if(getId) {
+				while (rs.next()) {
+					reservations.add(new Reservation(rs.getLong("id"),
+							rs.getLong("client_id"),
+							rs.getLong("vehicle_id"),
+							rs.getDate("debut").toLocalDate(),
+							rs.getDate("fin").toLocalDate()));
+				}
+			} else {
+				while (rs.next()) {
 
-				reservations.add(new Reservation(rs.getLong("id"),
-						rs.getLong("client_id"),
-						rs.getLong("vehicle_id"),
-						rs.getDate("debut").toLocalDate(),
-						rs.getDate("fin").toLocalDate()));
+
+					Client client = ClientService.getInstance().findById(rs.getLong("client_id"));
+					Vehicle vehicle = VehicleService.getInstance().findById(rs.getLong("vehicle_id"));
+
+					reservations.add(new Reservation(rs.getLong("id"),
+							client, vehicle,
+							rs.getDate("debut").toLocalDate(),
+							rs.getDate("fin").toLocalDate()));
+				}
 			}
 			return reservations;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (ServiceException e) {
+			throw new RuntimeException(e);
 		}
 		return null;
 	}

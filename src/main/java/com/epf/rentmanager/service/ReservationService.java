@@ -62,10 +62,10 @@ public class ReservationService {
 		}
 	}
 
-	public List<Reservation> findAll() throws ServiceException {
+	public List<Reservation> findAll(boolean byId) throws ServiceException {
 
 		try {
-			return ReservationDao.getInstance().findAll();
+			return ReservationDao.getInstance().findAll(byId);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();

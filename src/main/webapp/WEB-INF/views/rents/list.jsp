@@ -37,8 +37,8 @@
                                 <c:forEach items="${rents}" var="rent">
                                     <tr>
                                         <td>${rent.id}</td>
-                                        <td>${rent.vehicle_id}</td>
-                                        <td>${rent.client_id}</td>
+                                        <td>${rent.vehicle.constructeur} ${rent.vehicle.modele}</td>
+                                        <td>${rent.client.prenom} ${rent.client.nom}</td>
                                         <td>${rent.debut}</td>
                                         <td>${rent.fin}</td>
                                         <td>
