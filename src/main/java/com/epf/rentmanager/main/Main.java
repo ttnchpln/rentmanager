@@ -1,5 +1,6 @@
 package com.epf.rentmanager.main;
 
+import com.epf.rentmanager.configuration.AppConfiguration;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
@@ -7,6 +8,9 @@ import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.time.LocalDate;
 
 
@@ -16,6 +20,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Starting main... \n");
+
+        ApplicationContext context = new
+                AnnotationConfigApplicationContext(AppConfiguration.class);
+        ClientService clientService = context.getBean(ClientService.class);
+        VehicleService vehicleService = context.getBean(VehicleService.class);
 
         boolean addClient = false;
         boolean addVehicle = false;
@@ -29,25 +38,25 @@ public class Main {
             // clients.stream().forEach((client) -> System.out.println(client));
 
             System.out.println("Tous les clients :");
-            for(Client c : ClientService.getInstance().findAll()) {
+            for(Client c : clientService.findAll()) {
                 System.out.println(c);
             }
             System.out.println();
 
             System.out.println("Client id = 3 :");
-            System.out.println(ClientService.getInstance().findById(3));
+            System.out.println(clientService.findById(3));
             System.out.println();
 
             // ----------- VEHICULES ------------
 
             System.out.println("Tous les véhicules :");
-            for(Vehicle v : VehicleService.getInstance().findAll()) {
+            for(Vehicle v : vehicleService.findAll()) {
                 System.out.println(v);
             }
             System.out.println();
 
             System.out.println("Véhicule id = 3 :");
-            System.out.println(VehicleService.getInstance().findById(3));
+            System.out.println(vehicleService.findById(3));
             System.out.println();
 
             // ------------ AJOUT -----------

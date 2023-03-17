@@ -18,25 +18,25 @@ import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.VehicleService;
+import org.springframework.stereotype.Repository;
+
+@Repository
 
 public class ReservationDao {
 
-	private static ReservationDao instance = null;
-	private ReservationDao() {}
-	public static ReservationDao getInstance() {
-		if(instance == null) {
-			instance = new ReservationDao();
-		}
-		return instance;
+	private ClientService clientService;
+	private VehicleService vehicleService;
+	private ReservationDao(ClientService clientService, VehicleService vehicleService) {
+		this.clientService = clientService;
+		this.vehicleService = vehicleService;
 	}
-	
 	private static final String CREATE_RESERVATION_QUERY = "INSERT INTO Reservation(client_id, vehicle_id, debut, fin) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_RESERVATION_QUERY = "DELETE FROM Reservation WHERE id=?;";
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 	private static final String COUNT_RESERVATIONS = "SELECT COUNT(*) AS total FROM Reservation";
-		
+
 	public long create(Reservation reservation) throws DaoException {
 
 		try {
@@ -148,10 +148,8 @@ public class ReservationDao {
 				}
 			} else {
 				while (rs.next()) {
-
-
-					Client client = ClientService.getInstance().findById(rs.getLong("client_id"));
-					Vehicle vehicle = VehicleService.getInstance().findById(rs.getLong("vehicle_id"));
+					Client client = clientService.findById(rs.getLong("client_id"));
+					Vehicle vehicle = vehicleService.findById(rs.getLong("vehicle_id"));
 
 					reservations.add(new Reservation(rs.getLong("id"),
 							client, vehicle,

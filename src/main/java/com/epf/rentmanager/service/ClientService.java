@@ -9,16 +9,19 @@ import com.epf.rentmanager.dao.VehicleDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import org.springframework.stereotype.Service;
+
+@Service
 
 public class ClientService {
 
 	private ClientDao clientDao;
-	public static ClientService instance;
 	
-	private ClientService() {
-		this.clientDao = ClientDao.getInstance();
+	private ClientService(ClientDao clientDao) {
+		this.clientDao = clientDao;
 	}
 	
+	/*
 	public static ClientService getInstance() {
 		if (instance == null) {
 			instance = new ClientService();
@@ -26,10 +29,11 @@ public class ClientService {
 		
 		return instance;
 	}
+	 */
 
 	public long delete(Client client) throws ServiceException {
 		try {
-			return ClientDao.getInstance().delete(client);
+			return clientDao.delete(client);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -39,7 +43,7 @@ public class ClientService {
 	public long create(Client client) throws ServiceException {
 
 		try {
-			return ClientDao.getInstance().create(client);
+			return clientDao.create(client);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -49,7 +53,7 @@ public class ClientService {
 	public Client findById(long id) throws ServiceException {
 
 		try {
-			return ClientDao.getInstance().findById(id);
+			return clientDao.findById(id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -59,7 +63,7 @@ public class ClientService {
 	public List<Client> findAll() throws ServiceException {
 
 		try {
-			return ClientDao.getInstance().findAll();
+			return clientDao.findAll();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -68,7 +72,7 @@ public class ClientService {
 	public int count() throws ServiceException {
 
 		try {
-			return ClientDao.getInstance().count();
+			return clientDao.count();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
