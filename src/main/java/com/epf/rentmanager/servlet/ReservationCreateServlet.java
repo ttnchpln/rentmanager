@@ -28,7 +28,9 @@ public class ReservationCreateServlet extends HttpServlet {
 
     @Autowired
     VehicleService vehicleService;
+    @Autowired
     ClientService clientService;
+    @Autowired
     ReservationService reservationService;
     @Override
     public void init() throws ServletException {
