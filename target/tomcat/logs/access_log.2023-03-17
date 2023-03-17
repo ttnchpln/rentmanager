@@ -1,0 +1,7 @@
+127.0.0.1 - - [17/Mar/2023:09:41:25 +0100] "GET /rentmanager HTTP/1.1" 302 - http-bio-8080-exec-1 0
+127.0.0.1 - - [17/Mar/2023:09:41:26 +0100] "GET /rentmanager/ HTTP/1.1" 302 - http-bio-8080-exec-2 536
+127.0.0.1 - - [17/Mar/2023:09:41:26 +0100] "GET /rentmanager/home HTTP/1.1" 500 1809 http-bio-8080-exec-3 13
+127.0.0.1 - - [17/Mar/2023:09:42:27 +0100] "GET /rentmanager/home HTTP/1.1" 500 1809 http-bio-8080-exec-4 3
+127.0.0.1 - - [17/Mar/2023:09:47:29 +0100] "GET /rentmanager/home HTTP/1.1" 500 1809 http-bio-8080-exec-1 39
+127.0.0.1 - - [17/Mar/2023:09:52:25 +0100] "GET /rentmanager/home HTTP/1.1" 500 1809 http-bio-8080-exec-1 52
+127.0.0.1 - - [17/Mar/2023:09:53:51 +0100] "GET /rentmanager/home HTTP/1.1" 500 1809 http-bio-8080-exec-2 2

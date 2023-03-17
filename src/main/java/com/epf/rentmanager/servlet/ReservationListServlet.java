@@ -24,8 +24,6 @@ public class ReservationListServlet extends HttpServlet {
     // private ReservationService reservationService = ReservationService.getInstance();
 
     @Autowired
-    VehicleService vehicleService;
-    ClientService clientService;
     ReservationService reservationService;
     @Override
     public void init() throws ServletException {

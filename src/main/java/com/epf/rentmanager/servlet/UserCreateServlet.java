@@ -27,9 +27,7 @@ public class UserCreateServlet extends HttpServlet {
     // private ClientService clientService = ClientService.getInstance();
 
     @Autowired
-    VehicleService vehicleService;
     ClientService clientService;
-    ReservationService reservationService;
     @Override
     public void init() throws ServletException {
         super.init();

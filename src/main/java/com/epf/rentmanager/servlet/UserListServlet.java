@@ -24,9 +24,7 @@ public class UserListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     // private ClientService clientService = ClientService.getInstance();
     @Autowired
-    VehicleService vehicleService;
     ClientService clientService;
-    ReservationService reservationService;
     @Override
     public void init() throws ServletException {
         super.init();

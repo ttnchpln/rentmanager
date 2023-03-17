@@ -25,8 +25,6 @@ public class VehicleCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Autowired
     VehicleService vehicleService;
-    ClientService clientService;
-    ReservationService reservationService;
     @Override
     public void init() throws ServletException {
         super.init();

@@ -21,6 +21,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Starting main... \n");
 
+
         ApplicationContext context = new
                 AnnotationConfigApplicationContext(AppConfiguration.class);
         ClientService clientService = context.getBean(ClientService.class);
