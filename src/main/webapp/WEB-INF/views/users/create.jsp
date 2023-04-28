@@ -31,14 +31,14 @@
                                     <label for="last_name" class="col-sm-2 control-label">Nom</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nom">
+                                        <input type="text" minlength="3" class="form-control" id="last_name" name="last_name" placeholder="Nom">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="first_name" class="col-sm-2 control-label">Prenom</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Prenom">
+                                        <input type="text" minlength="3" class="form-control" id="first_name" name="first_name" placeholder="Prenom">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -62,6 +62,13 @@
                             </div>
                             <!-- /.box-footer -->
                         </form>
+                        </div class="box">
+                            <c:if test="${not empty message_erreur}">
+                                <span class="alert alert-warning">
+                                    <b>Erreur :</b> ${message_erreur}
+                                </span>
+                            </c:if>
+                        </div>
                     </div>
                     <!-- /.box -->
                 </div>

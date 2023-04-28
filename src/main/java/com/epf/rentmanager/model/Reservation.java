@@ -1,6 +1,7 @@
 package com.epf.rentmanager.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Reservation {
@@ -10,12 +11,13 @@ public class Reservation {
     private long vehicle_id;
     private LocalDate debut;
     private LocalDate fin;
+    private Vehicle vehicle;
+    private Client client;
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
 
-    private Vehicle vehicle;
 
     public Reservation() {
         super();
@@ -69,12 +71,20 @@ public class Reservation {
         return debut;
     }
 
+    public String getDebutAsString() {
+        return debut.format(DateTimeFormatter.ofPattern("dd LLLL yyyy"));
+    }
+
     public void setDebut(LocalDate debut) {
         this.debut = debut;
     }
 
     public LocalDate getFin() {
         return fin;
+    }
+
+    public String getFinAsString() {
+        return fin.format(DateTimeFormatter.ofPattern("dd LLLL yyyy"));
     }
 
     public void setFin(LocalDate fin) {
@@ -87,8 +97,6 @@ public class Reservation {
     public void setClient(Client client) {
         this.client = client;
     }
-
-    private Client client;
 
     public Vehicle getVehicle() {
         return vehicle;

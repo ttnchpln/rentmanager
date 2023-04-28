@@ -13,23 +13,19 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import org.springframework.stereotype.Repository;
+
+@Repository
 
 public class VehicleDao {
-	
-	private static VehicleDao instance = null;
-	private VehicleDao() {}
-	public static VehicleDao getInstance() {
-		if(instance == null) {
-			instance = new VehicleDao();
-		}
-		return instance;
-	}
-	
+
+	public VehicleDao() {}
 	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, modele, nb_places) VALUES(?, ?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
 	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle WHERE id=?;";
 	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, modele, nb_places FROM Vehicle;";
 	private static final String COUNT_VEHICLES = "SELECT COUNT(*) AS total FROM Vehicle";
+	private static final String UPDATE_VEHICLE_QUERY = "UPDATE Vehicle SET constructeur = ?, modele = ?, nb_places = ? WHERE id = ?";
 	
 	public long create(Vehicle vehicle) throws DaoException {
 
@@ -52,13 +48,13 @@ public class VehicleDao {
 		}
 	}
 
-	public long delete(Vehicle vehicle) throws DaoException {
+	public long delete(long idVehicle) throws DaoException {
 
 		try {
 			Connection connexion = ConnectionManager.getConnection();
 
 			PreparedStatement statement = connexion.prepareStatement(DELETE_VEHICLE_QUERY);
-			statement.setLong(1, vehicle.getId());
+			statement.setLong(1, idVehicle);
 
 			return statement.executeUpdate();
 
@@ -121,6 +117,26 @@ public class VehicleDao {
 		}
 
 		return vehicles;
+	}
+
+	public long update(Vehicle vehicle) throws DaoException {
+
+		try {
+			Connection connexion = ConnectionManager.getConnection();
+
+			PreparedStatement statement = connexion.prepareStatement(UPDATE_VEHICLE_QUERY);
+
+			statement.setString(1, vehicle.getConstructeur());
+			statement.setString(2, vehicle.getModele());
+			statement.setInt(3, vehicle.getNb_places());
+			statement.setLong(4, vehicle.getId());
+
+			return statement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
 	}
 
 	public int count() throws DaoException {

@@ -1,6 +1,7 @@
 package com.epf.rentmanager.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Client {
@@ -40,6 +41,10 @@ public class Client {
 
     public LocalDate getDateDeNaissance() {
         return dateDeNaissance;
+    }
+
+    public String getDateDeNaissanceAsString() {
+        return dateDeNaissance.format(DateTimeFormatter.ofPattern("dd LLLL yyyy"));
     }
 
     public long getId() {
