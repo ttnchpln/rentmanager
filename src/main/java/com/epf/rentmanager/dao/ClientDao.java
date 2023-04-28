@@ -2,6 +2,7 @@ package com.epf.rentmanager.dao;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,8 @@ import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.persistence.ConnectionManager;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.ServletException;
+
 @Repository
 public class ClientDao {
 	private ClientDao() {}
@@ -20,6 +23,7 @@ public class ClientDao {
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 	private static final String COUNT_VEHICLES = "SELECT COUNT(*) AS total FROM Client";
+	private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET nom = ?, prenom = ?, email = ?, naissance = ? WHERE id = ?";
 	
 	public long create(Client client) throws DaoException {
 
@@ -33,11 +37,6 @@ public class ClientDao {
 			statement.setString(3, client.getEmail());
 			statement.setString(4, client.getDateDeNaissance().toString());
 
-			//Statement statement = connexion.createStatement();
-			//String toReplace = String.format("'%s', '%s', '%s', '%s'", client.getNom(), client.getPrenom(), client.getEmail(), client.getDateDeNaissance().toString());
-			//String query = CREATE_CLIENT_QUERY.replace("?, ?, ?, ?", toReplace);
-			//System.out.println("Query = " + query);
-
 			return statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -46,13 +45,13 @@ public class ClientDao {
 		}
 	}
 	
-	public long delete(Client client) throws DaoException {
+	public long delete(long idClient) throws DaoException {
 
 		try {
 			Connection connexion = ConnectionManager.getConnection();
 
 			PreparedStatement statement = connexion.prepareStatement(DELETE_CLIENT_QUERY);
-			statement.setLong(1, client.getId());
+			statement.setLong(1, idClient);
 
 			return statement.executeUpdate();
 
@@ -116,6 +115,27 @@ public class ClientDao {
 		}
 
 		return clients;
+	}
+
+	public long update(Client client) throws DaoException {
+
+		try {
+			Connection connexion = ConnectionManager.getConnection();
+
+			PreparedStatement statement = connexion.prepareStatement(UPDATE_CLIENT_QUERY);
+
+			statement.setString(1, client.getNom());
+			statement.setString(2, client.getPrenom());
+			statement.setString(3, client.getEmail());
+			statement.setString(4, client.getDateDeNaissance().toString());
+			statement.setString(5, String.valueOf(client.getId()));
+
+			return statement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DaoException();
+		}
 	}
 
 	public int count() throws DaoException {

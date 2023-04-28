@@ -53,16 +53,14 @@
                                     <label for="begin" class="col-sm-2 control-label">Date de debut</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="begin" name="begin" required
-                                               data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                        <input type="date" class="form-control" id="begin" name="begin" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="end" class="col-sm-2 control-label">Date de fin</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="end" name="end" required
-                                               data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                        <input type="date" class="form-control" id="end" name="end" required>
                                     </div>
                                 </div>
                             </div>
@@ -72,6 +70,12 @@
                             </div>
                             <!-- /.box-footer -->
                         </form>
+                    </div class="box">
+                        <c:if test="${not empty message_erreur}">
+                            <span class="alert alert-warning">
+                                <b>Erreur :</b> ${message_erreur}
+                            </span>
+                        </c:if>
                     </div>
                     <!-- /.box -->
                 </div>

@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static java.time.temporal.ChronoUnit.YEARS;
+
 @WebServlet("/users/create")
 public class UserCreateServlet extends HttpServlet {
 
@@ -46,14 +48,33 @@ public class UserCreateServlet extends HttpServlet {
         String email = request.getParameter("email");
         LocalDate birthday = LocalDate.parse(request.getParameter("birthday"));
 
+        if(YEARS.between(birthday, LocalDate.now()) < 18) {
+            request.setAttribute("message_erreur", "Un client n'ayant pas 18 ans ne peut pas être créé");
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+            return;
+        }
+
+        try {
+            for(Client c : clientService.findAll()) {
+                if(email.equals(c.getEmail())) {
+                    request.setAttribute("message_erreur", "Ce mail est déja attribué");
+                    this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+                    return;
+                }
+            }
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
+
         Client clientToAdd = new Client(nom, prenom, email, birthday);
-        System.out.println(clientToAdd.toString());
 
         try {
             this.clientService.create(clientToAdd);
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
+
+        response.sendRedirect("/rentmanager/users");
     }
 
 }

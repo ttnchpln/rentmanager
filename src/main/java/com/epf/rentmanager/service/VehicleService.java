@@ -41,9 +41,9 @@ public class VehicleService {
 		}
 	}
 
-	public long delete(Vehicle vehicle) throws ServiceException {
+	public long delete(long idVehicle) throws ServiceException {
 		try {
-			return vehicleDao.delete(vehicle);
+			return vehicleDao.delete(idVehicle);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -63,6 +63,16 @@ public class VehicleService {
 
 		try {
 			return vehicleDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+	}
+
+	public long update(Vehicle vehicle) throws ServiceException {
+
+		try {
+			return vehicleDao.update(vehicle);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();

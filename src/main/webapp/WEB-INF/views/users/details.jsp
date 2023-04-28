@@ -21,19 +21,22 @@
                     <div class="box box-primary">
                         <div class="box-body box-profile">
                             <h3 class="profile-username text-center">
-                                ${client.prenom} ${client.nom} (${client.email})
+                                ${client.prenom} ${client.nom}
+                            </h3>
+                            <h3 class="profile-username text-center">
+                                (${client.email})
                             </h3>
 
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
                                     <b>Reservation(s)</b>
                                     <a class="pull-right">
-                                        ${nb_rents}
+                                        ${rents.size()}
                                     </a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Voiture(s)</b> <a class="pull-right">
-                                        ${nb_cars}
+                                        ${rents.size()}
                                     </a>
                                 </li>
                             </ul>
@@ -63,8 +66,8 @@
                                             <tr>
                                                 <td>${rent.id}</td>
                                                 <td>${rent.vehicle.constructeur} ${rent.vehicle.modele}</td>
-                                                <td>${rent.debut}</td>
-                                                <td>${rent.fin}</td>
+                                                <td>${rent.getDebutAsString()}</td>
+                                                <td>${rent.getFinAsString()}</td>
                                             </tr>
                                         </c:forEach>
                                     </table>
@@ -81,12 +84,12 @@
                                             <th>Constructeur</th>
                                             <th style=>Nombre de places</th>
                                         </tr>
-                                        <c:forEach items="${cars}" var="vehicle">
+                                        <c:forEach items="${rents}" var="rent">
                                             <tr>
-                                                <td>${vehicle.id}</td>
-                                                <td>${vehicle.constructeur}</td>
-                                                <td>${vehicle.modele}</td>
-                                                <td>${vehicle.nb_places}</td>
+                                                <td>${rent.vehicle.id}</td>
+                                                <td>${rent.vehicle.constructeur}</td>
+                                                <td>${rent.vehicle.modele}</td>
+                                                <td>${rent.vehicle.nb_places}</td>
                                             </tr>
                                         </c:forEach>
                                     </table>

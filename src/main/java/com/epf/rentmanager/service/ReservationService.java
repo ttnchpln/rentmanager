@@ -3,6 +3,7 @@ package com.epf.rentmanager.service;
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import org.springframework.stereotype.Service;
@@ -40,9 +41,28 @@ public class ReservationService {
 		}
 	}
 
-	public long delete(Reservation reservation) throws ServiceException {
+	public long update(Reservation reservation) throws ServiceException {
+
 		try {
-			return reservationDao.delete(reservation);
+			return reservationDao.update(reservation);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+	}
+
+	public long delete(long id) throws ServiceException {
+		try {
+			return reservationDao.delete(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+	}
+
+	public Reservation findById(long id) throws ServiceException {
+		try {
+			return reservationDao.findById(id);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -58,9 +78,18 @@ public class ReservationService {
 		}
 	}
 
-	public List<Reservation> findResaByClientId(long clientId, boolean getId) throws ServiceException {
+	public List<Client> findClientsByVehicleId(long idVehicle) throws ServiceException {
 		try {
-			return reservationDao.findResaByClientId(clientId, getId);
+			return reservationDao.findClientsByVehicleId(idVehicle);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+	}
+
+	public List<Reservation> findResaByClientId(long clientId) throws ServiceException {
+		try {
+			return reservationDao.findResaByClientId(clientId);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -94,4 +123,18 @@ public class ReservationService {
 			throw new ServiceException();
 		}
 	}
+
+	public boolean validDates(Reservation newRes) throws DaoException {
+		return reservationDao.validDates(newRes);
+	}
+
+	public int countConsecutivDays(Reservation res) throws DaoException {
+		return reservationDao.countConsecutivDays(res);
+	}
+
+	public int countConsecutivDaysUser(Reservation res) throws DaoException {
+		return reservationDao.countConsecutivDaysUser(res);
+	}
+
+
 }

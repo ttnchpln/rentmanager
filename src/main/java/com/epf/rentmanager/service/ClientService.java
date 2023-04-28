@@ -31,9 +31,9 @@ public class ClientService {
 	}
 	 */
 
-	public long delete(Client client) throws ServiceException {
+	public long delete(long idClient) throws ServiceException {
 		try {
-			return clientDao.delete(client);
+			return clientDao.delete(idClient);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ServiceException();
@@ -69,6 +69,17 @@ public class ClientService {
 			throw new ServiceException();
 		}
 	}
+
+	public long update(Client client) throws ServiceException {
+
+		try {
+			return clientDao.update(client);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new ServiceException();
+		}
+	}
+
 	public int count() throws ServiceException {
 
 		try {

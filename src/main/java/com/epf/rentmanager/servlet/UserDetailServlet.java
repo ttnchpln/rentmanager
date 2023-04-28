@@ -27,7 +27,6 @@ public class UserDetailServlet extends HttpServlet {
      *
      */
     private static final long serialVersionUID = 1L;
-    // private ClientService clientService = ClientService.getInstance();
 
     @Autowired
     ReservationService reservationService;
@@ -46,14 +45,10 @@ public class UserDetailServlet extends HttpServlet {
 
             long idClient = Long.parseLong(request.getParameter("id"));
 
-            List<Reservation> rents = this.reservationService.findResaByClientId(idClient, false);
-            List<Vehicle> cars = this.reservationService.findVehiclesByClientId(idClient);
+            List<Reservation> rents = this.reservationService.findResaByClientId(idClient);
 
             request.setAttribute("client", this.clientService.findById(idClient));
             request.setAttribute("rents", rents);
-            request.setAttribute("cars", cars);
-            request.setAttribute("nb_rents", rents.size());
-            request.setAttribute("nb_cars", cars.size());
 
         } catch (ServiceException e) {
             throw new RuntimeException(e);
@@ -61,6 +56,5 @@ public class UserDetailServlet extends HttpServlet {
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(request, response);
     }
-
 }
 

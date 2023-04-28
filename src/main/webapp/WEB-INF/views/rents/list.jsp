@@ -39,16 +39,16 @@
                                         <td>${rent.id}</td>
                                         <td>${rent.vehicle.constructeur} ${rent.vehicle.modele}</td>
                                         <td>${rent.client.prenom} ${rent.client.nom}</td>
-                                        <td>${rent.debut}</td>
-                                        <td>${rent.fin}</td>
+                                        <td>${rent.getDebutAsString()}</td>
+                                        <td>${rent.getFinAsString()}</td>
                                         <td>
-                                            <a class="btn btn-primary disabled" href="${pageContext.request.contextPath}/cars?id=1">
+                                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/rents/details?id=${rent.id}">
                                                 <i class="fa fa-play"></i>
                                             </a>
-                                            <a class="btn btn-success disabled" href="#">
+                                            <a class="btn btn-success" href="${pageContext.request.contextPath}/rents/edit?id=${rent.id}">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger disabled" href="#">
+                                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/rents/delete?id=${rent.id}">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>

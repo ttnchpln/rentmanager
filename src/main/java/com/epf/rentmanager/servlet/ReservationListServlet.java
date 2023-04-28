@@ -21,7 +21,6 @@ public class ReservationListServlet extends HttpServlet {
      *
      */
     private static final long serialVersionUID = 1L;
-    // private ReservationService reservationService = ReservationService.getInstance();
 
     @Autowired
     ReservationService reservationService;
